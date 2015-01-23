@@ -233,6 +233,16 @@
            (make-int 1)
            (make-int 0))))))
 
+(define (type-pred type)
+  (make-proc
+   (λ (tval)
+     (let ([typekw  (extract-keyword type)]
+           [tvalval (resolve-closure tval)])
+       (when (not (typed-val? tvalval)) (error "not a typed value"))
+       (if (eq? (cadr tvalval) typekw)
+           (make-int 1)
+           (make-int 0))))))
+
 (define (fval-func Rfunc)
   (make-proc
    (λ (Rval)
@@ -335,6 +345,7 @@
     [cval  ,cval-proc]
     [seq   ,seq]
     [ctorp ,ctor-pred]
+    [typep ,type-pred]
     [fval  ,fval-func]
     ))
 
@@ -425,3 +436,16 @@
 (eval-force (compile `(,prog-nth 2 ,sample-inflst)) recur-env)
 (eval-force (compile `(,prog-nth 3 ,sample-inflst)) recur-env)
 (eval-force (compile `(,prog-nth 4 ,sample-inflst)) recur-env)
+
+
+(display "---type-pred---\n")
+(define (multi-types body)
+  (compile `(T t1 ((c1))
+             (T t2 ((c2)) ,body))))
+
+(eval-force (multi-types '(ctorp c1 c1)) empty-env)
+(eval-force (multi-types '(ctorp c1 c2)) empty-env)
+(eval-force (multi-types '(typep t1 c1)) empty-env)
+(eval-force (multi-types '(typep t1 c2)) empty-env)
+
+;; correct output should be 1,0,1,0
