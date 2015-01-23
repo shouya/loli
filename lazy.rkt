@@ -171,7 +171,7 @@
 (define (seq a)
   (make-proc
    (λ (b)
-     (eval-force a)
+     (reduce a empty-env)
      b)))
 
 
@@ -271,7 +271,7 @@
   (if (null? CTargs)
       (list 'cval Tname CTname
             (if (null? stack)
-                '()
+                -42424242
                 (list 'λ 'f (list* 'f (reverse stack)))))
       (list 'λ (car CTargs)
             (compile-ctor Tname CTname (cdr CTargs)
@@ -394,9 +394,9 @@
 
 ;; fix (\f xs -> if (xs == []) then 0 else 1 + f (tail xs)) [1,2,3]  =>  3
 (define prog
-  '(T L ((Nil a) (Cons hd tl))
+  '(T L ((Nil) (Cons hd tl))
     ((λ (lst len) (len lst))
-     (Cons 1 (Cons 2 (Cons 3 (Nil 999))))
+     (Cons 1 (Cons 2 (Cons 3 Nil)))
      (Y (λ (len xs) (if (ctorp Nil xs)
                         0
                         (+ 1 (len (fval (λ (hd tl) tl) xs)))))))))
@@ -407,8 +407,8 @@
 
 (define sample-inflst
   '(T L ((Nil) (Cons hd tl))
-    ((λ (inflst take) (take 10 (inflst 2)))   ;; iterating from 2, i.e. [2..]
-     (Y (λ (iter n) (Cons n (iter (+ n 1)))))
+    ((λ (inflst take) (take 10 (inflst 2)))
+     (Y (λ (iter n) (Cons n (iter (+ n 1)))))   ;; iterating from 2, i.e. [2..]
      (Y (λ (f n xs) (if n
                         (Cons (fval (λ (hd _) hd) xs)
                               (f (- n 1) (fval (λ (_ tl) tl) xs)))
