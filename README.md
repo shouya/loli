@@ -1,8 +1,8 @@
 ## Loli
-''This project was move from a trial on lazy evaluation
+*This project was moved out from a trial on lazy evaluation
 implementation. For the roadmap and detailed code of the previous
 steps, please check out my repo
-[thinking-dumps/lazy](https://github.com/shouya/thinking-dumps/tree/master/lazy)''
+[thinking-dumps/lazy](https://github.com/shouya/thinking-dumps/tree/master/lazy)*
 
 
 As I field to implement something using the lazy evalution theory, a
