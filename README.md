@@ -7,7 +7,7 @@ steps, please check out my repo
 
 As I field to implement something using the lazy evalution theory, a
 new language was created. It was beautiful and elegant, and most
-important, it's adorable. I call she `loli`, as suggested by
+important, it's adorable. I called her `loli`, as suggested by
 [@codeotakuchiyan](https://twitter.com/codeotakuchiyan).
 
 ![Loli's - Moegirl Wiki](http://static.mengniang.org/common/c/c1/Roukyubu.jpg)
