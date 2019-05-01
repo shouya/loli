@@ -4,15 +4,7 @@ implementation. For the roadmap and detailed code of the previous
 steps, please check out my repo
 [thinking-dumps/lazy](https://github.com/shouya/thinking-dumps/tree/master/lazy)*
 
-
-As I field to implement something using the lazy evalution theory, a
-new language was created. It was beautiful and elegant, and most
-important, it's adorable. I called her `loli`, as suggested by
-[@codeotakuchiyan](https://twitter.com/codeotakuchiyan).
-
-![Loli's - Moegirl Wiki](http://static.mengniang.org/common/c/c1/Roukyubu.jpg)
-
-Loli is a lisp dialect for research purpose, she so far implements
+Loli (Pronunciation: low-lai) is a lisp dialect for research purpose, she so far implements
 [lazy evaluation](http://en.wikipedia.org/wiki/Lazy_evaluation) and
 [algebraic data types](http://en.wikipedia.org/wiki/Algebraic_data_type),
 other features are not planned yet.
